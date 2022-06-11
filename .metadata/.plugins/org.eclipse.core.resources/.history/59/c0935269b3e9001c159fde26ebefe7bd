@@ -1,0 +1,65 @@
+import java.util.ArrayList;
+import java.util.Collections;
+
+
+public class ColaDePrioridad {
+
+	ArrayList<Integer> elementos = new ArrayList<Integer>();
+
+	public ColaDePrioridad() {
+	}
+
+	public void ponerEnCola(Integer nro) {
+		elementos.add(nro);
+	}
+
+	public ArrayList<Integer> getElementos() {
+		return elementos;
+	}
+
+	public Integer sacarDeCola() {
+
+		Integer retorno = elementos.get(0);
+		
+
+		Collections.swap(elementos, 0,elementos.size()-1);
+		elementos.remove(elementos.size()-1);
+		
+		bajarNodo(0);
+
+		return retorno;
+	}
+	
+	public void bajarNodo(int idxNodo) {
+		boolean mayorQueHijoIzq = false;
+		boolean mayorQueHijoDer = false;
+
+		int idxHijoIzq = 2 * idxNodo+1;
+		int idxHijoDer = 2 * idxNodo+2;
+		boolean seguirBajando = true;
+
+		while (seguirBajando) {
+			
+			if (idxHijoIzq <= elementos.size() && elementos.get(idxNodo) > idxHijoIzq)
+				mayorQueHijoIzq = true;
+			if (idxHijoDer <= elementos.size() && elementos.get(idxNodo) > idxHijoDer)
+				mayorQueHijoDer = true;
+			if (mayorQueHijoDer && mayorQueHijoIzq) {
+				if (elementos.get(idxHijoIzq) < elementos.get(idxHijoDer)) {
+					Collections.swap(elementos, idxNodo, idxHijoIzq);
+					idxNodo = idxHijoIzq;
+				} else {
+					Collections.swap(elementos, idxNodo, idxHijoDer);
+					idxNodo = idxHijoDer;
+				}
+			}else if(mayorQueHijoDer&&!mayorQueHijoIzq) {
+				Collections.swap(elementos, idxNodo, idxHijoDer);
+				idxNodo=idxHijoDer;
+			}else if(!mayorQueHijoDer&&mayorQueHijoIzq) {
+				Collections.swap(elementos, idxHijoIzq, idxNodo);
+			}else {
+				seguirBajando=false;
+			}
+		}
+	}
+}

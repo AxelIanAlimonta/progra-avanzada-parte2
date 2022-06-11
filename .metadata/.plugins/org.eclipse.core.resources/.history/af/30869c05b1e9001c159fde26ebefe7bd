@@ -1,0 +1,49 @@
+import java.util.ArrayList;
+import java.util.Collections;
+
+import javax.management.modelmbean.ModelMBean;
+
+public class ColaDePrioridad {
+
+	ArrayList<Integer>elementos=new ArrayList<Integer>();
+	
+	public ColaDePrioridad() {
+		elementos.add(0);
+	}
+	
+	public void ponerEnCola(Integer nro) {
+		elementos.add(nro);
+	}
+
+	public ArrayList<Integer> getElementos() {
+		return elementos;
+	}
+	
+	public Integer sacarDeCola() {
+		
+		Integer retorno=elementos.get(1);
+		
+		
+		Collections.swap(elementos,0,elementos.size());
+		elementos.remove(elementos.size());		
+		boolean mayorQueHijoIzq=false;
+		boolean mayorQueHijoDer=false;
+		
+		int idxElemActual=1;
+		int idxHijoIzq=2*idxElemActual;
+		int idxHijoDer=2*idxElemActual+1;
+		
+		if(idxHijoIzq<=elementos.size()&&elementos.get(idxElemActual)>idxHijoIzq)
+			mayorQueHijoIzq=true;
+		if(idxHijoDer<=elementos.size()&&elementos.get(idxElemActual)>idxHijoDer)
+			mayorQueHijoDer=true;
+		if(mayorQueHijoDer&&mayorQueHijoIzq) {
+			if(elementos.get(idxHijoDer)>elementos.get(idxHijoIzq))
+				
+		}
+			
+			
+		return retorno;
+	}
+	
+}

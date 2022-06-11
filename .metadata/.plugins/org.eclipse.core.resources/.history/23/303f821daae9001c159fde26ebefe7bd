@@ -1,0 +1,17 @@
+import java.util.ArrayList;
+
+public class ColaDePrioridad {
+
+	ArrayList<Integer>lista=new ArrayList<Integer>();
+	
+	public ColaDePrioridad() {
+	}
+	
+	public void ponerEnCola(Integer nro) {
+		lista.add(nro);
+	}
+	
+	public ArrayList<Integer> getLista() {
+		return lista;
+	}
+}
