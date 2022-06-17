@@ -8,6 +8,7 @@ public class Grafo {
 	private Grafo resultadoPrim;
 	private boolean visitados[];
 	private Arista pesos[];
+	private int pesoTotal=0;
 
 
 	public Grafo(int cantNodos) {
@@ -23,12 +24,14 @@ public class Grafo {
 	public void setArista(Arista ar) {
 		matAdy[ar.nodo1][ar.nodo2] = ar.peso;
 		matAdy[ar.nodo2][ar.nodo1] = ar.peso;
+
 	}
 
 	public Grafo prim(ArrayList<Integer> conectados) {
 		resultadoPrim = new Grafo(cantNodos + 1);
 		visitados = new boolean[cantNodos + 1];
 		pesos = new Arista[cantNodos + 1];
+
 		int contConectados=conectados.size();
 		
 		for(int i=0;i<=cantNodos;i++) {
@@ -49,6 +52,11 @@ public class Grafo {
 			nodoActual=aristaMenorPeso.nodo2;
 			contConectados++;			
 		}
+		
+		for(int i=1;i<=cantNodos;i++) {
+			pesoTotal+=pesos[i].peso;
+		}
+		resultadoPrim.pesoTotal=pesoTotal;
 
 		return resultadoPrim;
 	}
@@ -79,6 +87,8 @@ public class Grafo {
 	public String toString() {
 		String sal = "";
 
+//		sal+="Costo Final: "+ pesoTotal;
+		
 		for (int i = 1; i <= cantNodos; i++) {
 			for (int j = (i + 1); j <= (cantNodos); j++) {
 				if (matAdy[i][j] != inf)
@@ -87,5 +97,4 @@ public class Grafo {
 		}
 		return sal;
 	}
-
 }

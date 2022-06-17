@@ -14,6 +14,7 @@ public class Main {
 		grafo.setArista(new Arista(2,4,2));
 		grafo.setArista(new Arista(3,4,1));
 		
-		System.out.println(grafo.prim(listaVerticesConectados));
+		Grafo resultado=grafo.prim(listaVerticesConectados);
+		System.out.println(resultado);
 	}
 }
