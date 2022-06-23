@@ -16,7 +16,7 @@ public class Main {
 		grafo.setArista(7,6,9);
 		
 
-		System.out.println(grafo.caminoCostoDestOrig(2, 2));
+		System.out.println(grafo.caminoCostoDestOrig(2, 7));
 		
 	}
 }
